@@ -2,7 +2,8 @@ import java.io.*;
 
 public class LoginAndSignup {
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+	public static Database db = Database.getInstance();
+	
 	public static User loginORsignup() throws IOException{
 		System.out.println("1. Login \n2. Sign Up");
 		int check = Integer.parseInt(br.readLine());
@@ -30,16 +31,16 @@ public class LoginAndSignup {
 		System.out.println("Password: ");
 		String password = br.readLine();
 		if(check2 == 1) {
-			for(int id: Database.customers.keySet()) {
-				if(Database.customers.get(id).getName().equals(name) && Database.customers.get(id).getPassword().equals(password)) {
-					return Database.customers.get(id);
+			for(int id: db.customers.keySet()) {
+				if(db.customers.get(id).getName().equals(name) && db.customers.get(id).getPassword().equals(password)) {
+					return db.customers.get(id);
 				}
 			}
 		}
 		else if(check2 == 2) {
-			for(int id: Database.managers.keySet()) {
-				if(Database.managers.get(id).getName().equals(name) && Database.managers.get(id).getPassword().equals(password)) {
-					return Database.managers.get(id);
+			for(int id: db.managers.keySet()) {
+				if(db.managers.get(id).getName().equals(name) && db.managers.get(id).getPassword().equals(password)) {
+					return db.managers.get(id);
 				}
 			}
 		}
@@ -69,12 +70,12 @@ public class LoginAndSignup {
 		
 		if(check2 == 1) {
 			Customer customer = new Customer(name, aadhar, phone_num, email_id, balance, password);
-			Database.addCustomer(customer, customer.getID());
+			db.addCustomer(customer, customer.getID());
 			return customer;
 		}
 		else if(check2 == 2) {
 			Manager manager = new Manager(name, aadhar, phone_num, email_id, balance, password);
-			Database.addManager(manager, manager.getID());
+			db.addManager(manager, manager.getID());
 			return manager;
 		}
 		return signUp();

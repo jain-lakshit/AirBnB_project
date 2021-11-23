@@ -10,8 +10,8 @@ public class Customer extends User{
 		this.email_id = email;
 		this.phone_num = phone;
 		this.all_bookings = new ArrayList<Booking>();
-		this.id = Database.total_users;
-		Database.total_users += 1;
+		this.id = db.total_users;
+		db.total_users += 1;
 		this.password = password;
 	}
 	
@@ -31,12 +31,12 @@ public class Customer extends User{
 	}
 	
 	public void cancelBooking(int booking_id) {
-		all_bookings.remove(Database.bookings.get(booking_id));
-		Database.bookings.get(booking_id).cancel();
+		all_bookings.remove(db.bookings.get(booking_id));
+		db.bookings.get(booking_id).cancel();
 	}
 	
 	public List<Property> searchProperties(Date date) {
-		Map<Integer, Property> properties = Database.properties;
+		Map<Integer, Property> properties = db.properties;
 		List<Property> output = new ArrayList<Property>();
 		for(int id : properties.keySet()) {
 			Property property = properties.get(id);

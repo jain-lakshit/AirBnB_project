@@ -4,6 +4,6 @@ public class Manager extends Customer {
 		super(name, aadhar, phone, email, balance, password);
 	}
 	public void addProperty(Property property) {		
-		Database.addProperties(property, property.getID());
+		db.addProperties(property, property.getID());
 	}
 }

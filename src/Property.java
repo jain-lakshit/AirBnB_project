@@ -9,6 +9,8 @@ public class Property {
 	public int num_rooms;
 	public int id;
 	public int manager_id;
+	public static Database db = Database.getInstance();
+
 	public Property(String name, Location addr, int price, Calendar dates, User manager, int num_rooms) {
 		this.name = name;
 		this.address = addr;
@@ -16,8 +18,8 @@ public class Property {
 		this.dates_booked = dates;
 		this.manager = manager;
 		this.num_rooms = num_rooms;
-		id = Database.total_properties;
-		Database.total_properties += 1;
+		id = db.total_properties;
+		db.total_properties += 1;
 		manager_id = manager.getID();
 	}
 	

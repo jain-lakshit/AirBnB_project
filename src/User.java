@@ -10,7 +10,8 @@ public abstract class User {
 	protected int id;
 	protected String password;
 	public List<Booking> all_bookings;
-	
+	public static Database db = Database.getInstance();
+
 	// getters
 	public String getName() {
 		return fullname;

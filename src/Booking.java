@@ -6,14 +6,15 @@ public class Booking {
 	public Date start_date;
 	Property property;
 	int booking_id;
-	
+	public static Database db = Database.getInstance();
+
 	public Booking(Property property, int num_days, Date start_date) {
 		this.num_days = num_days;
 		this.start_date = start_date;
 		this.property_id = property.getID();
 		this.property = property;
-		booking_id = Database.total_bookings;
-		Database.total_bookings += 1;
+		booking_id = db.total_bookings;
+		db.total_bookings += 1;
 	}
 	
 	public int getTotalPrice() {

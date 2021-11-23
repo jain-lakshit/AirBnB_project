@@ -2,38 +2,49 @@ import java.util.*;
 import java.io.*;
 
 public class Database {
-	public static Map<Integer, Customer> customers;
-	public static Map<Integer, Manager> managers;
-	public static Map<Integer, Property> properties;
-	public static Map<Integer, Booking> bookings;
 	
-	public static int total_users = 0;
-	public static int total_properties = 0;
-	public static int total_bookings = 0;
+	private static Database Instance = new Database();	
 	
-	public static File customers_file = new File("./customers.txt");
-	public static File managers_file = new File("./managers.txt");
-	public static File properties_file = new File("./properties.txt");
-	public static File booking_file = new File("./bookings.txt");
+	private Database() {
+		
+	}
 	
-	public static void addCustomer(Customer customer, int id) {
+	public static Database getInstance() {
+		return Instance;
+	}
+	
+	public Map<Integer, Customer> customers;
+	public Map<Integer, Manager> managers;
+	public Map<Integer, Property> properties;
+	public Map<Integer, Booking> bookings;
+	
+	public int total_users = 0;
+	public int total_properties = 0;
+	public int total_bookings = 0;
+	
+	public File customers_file = new File("./customers.txt");
+	public File managers_file = new File("./managers.txt");
+	public File properties_file = new File("./properties.txt");
+	public File booking_file = new File("./bookings.txt");
+	
+	public void addCustomer(Customer customer, int id) {
 		customers.put(id, customer);
 	}
-	public static void addManager(Manager manager, int id) {
+	public void addManager(Manager manager, int id) {
 		managers.put(id, manager);
 	}
-	public static void addProperties(Property property, int id) {
+	public void addProperties(Property property, int id) {
 		properties.put(id, property);
 	}
-	public static void addBooking(Booking booking, int id) {
+	public void addBooking(Booking booking, int id) {
 		bookings.put(id, booking);
 	}
 	
-	public static void loadDatabase () throws FileNotFoundException, IOException {
+	public void loadDatabase () throws FileNotFoundException, IOException {
 		
 		properties = new HashMap<>();
 		BufferedReader br = new BufferedReader(new FileReader(properties_file));
-		Database.total_properties = Integer.parseInt(br.readLine());
+		total_properties = Integer.parseInt(br.readLine());
 		String line = br.readLine();
 		while(line != null) {
 			String[] details = line.split("~");
@@ -54,7 +65,7 @@ public class Database {
 		
 		bookings = new HashMap<>();
 		br = new BufferedReader(new FileReader(booking_file));
-		Database.total_bookings = Integer.parseInt(br.readLine());
+		total_bookings = Integer.parseInt(br.readLine());
 		line = br.readLine();
 		while(line != null) {
 			String[] details = line.split("~");
@@ -71,7 +82,7 @@ public class Database {
 		
 		customers = new HashMap<>();
 		br = new BufferedReader(new FileReader(customers_file));
-		Database.total_users = Integer.parseInt(br.readLine());
+		total_users = Integer.parseInt(br.readLine());
 		line = br.readLine();
 		while(line != null) {
 			String[] details = line.split("~");
@@ -97,7 +108,7 @@ public class Database {
 		
 		managers = new HashMap<>();
 		br = new BufferedReader(new FileReader(managers_file));
-		Database.total_users = Integer.parseInt(br.readLine());
+		total_users = Integer.parseInt(br.readLine());
 		line = br.readLine();
 		while(line != null) {
 			String[] details = line.split("~");
@@ -124,7 +135,7 @@ public class Database {
 		
 	}
 	
-	public static void saveDatabase() throws FileNotFoundException, IOException {
+	public void saveDatabase() throws FileNotFoundException, IOException {
 		PrintWriter writer = new PrintWriter(new FileWriter(customers_file));
 		writer.println(total_users);
 		for(int id: customers.keySet()) {

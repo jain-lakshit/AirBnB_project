@@ -41,5 +41,7 @@ public abstract class User {
 	abstract public List<Property> searchProperties(Date date);
 	abstract public void databaseAddBooking(Booking booking);
 	abstract public void addProperty(Property property);
-	abstract public void showBookings();
+	abstract public Boolean showBookings();
+	abstract public Boolean deductBalance(int deduct);
+	abstract public String getDetails();
 }

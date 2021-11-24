@@ -1,10 +1,20 @@
 import java.io.*;
 
 public class LoginAndSignup {
-	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	public static Database db = Database.getInstance();
+	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-	public static User loginORsignup() throws IOException{
+	private static Database db = Database.getInstance();
+	private static LoginAndSignup Instance = new LoginAndSignup();	
+	
+	private LoginAndSignup() {
+		
+	}
+	
+	public static LoginAndSignup getInstance() {
+		return Instance;
+	}
+	
+	public User loginORsignup() throws IOException{
 		System.out.println("1. Login \n2. Sign Up");
 		int check = Integer.parseInt(br.readLine());
 		if(check == 1) {
@@ -19,7 +29,7 @@ public class LoginAndSignup {
 		}
 	}
 	
-	public static User login() throws IOException{
+	private User login() throws IOException{
 		System.out.println("\n1. Login as Customer \n2. Login as Manager");
 		int check2 = Integer.parseInt(br.readLine());
 		if(check2 != 2 && check2 != 1){
@@ -48,7 +58,7 @@ public class LoginAndSignup {
 		return login();
 	}
 	
-	public static User signUp() throws IOException {
+	private User signUp() throws IOException {
 		System.out.println("\n1. Sign Up as Customer \n2. Sign Up as Manager");
 		int check2 = Integer.parseInt(br.readLine());
 		if(check2 != 2 && check2 != 1){

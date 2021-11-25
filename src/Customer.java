@@ -2,26 +2,13 @@ import java.util.*;
 import java.text.*;
 
 public class Customer extends User{
-	
-	private Customer(String[] details) {
-		this(details[1], details[2], details[4], details[3], Integer.parseInt(details[5]), details[6]);
-		id = Integer.parseInt(details[0]);
-	}
-	
+
 	public Customer(String line) {
-		this(line.split("~"));
+		super(line.split("~"));
 	}
 	
 	public Customer(String name, String aadhar, String phone, String email, int balance, String password) {
-		this.fullname = name;
-		this.aadhar = aadhar;
-		this.account_balance = balance;
-		this.email_id = email;
-		this.phone_num = phone;
-		this.all_bookings = new ArrayList<Booking>();
-		this.id = db.total_users;
-		db.total_users += 1;
-		this.password = password;
+		super(name, aadhar, phone, email, balance, password);
 	}
 	
 	
@@ -34,6 +21,7 @@ public class Customer extends User{
 			System.out.println("Not enough Balance");
 		}
 		else {
+			property.getManager().setBalance(property.getManager().getBalance() + booking.getTotalPrice());
 			db.bookings.put(booking.getID(), booking);
 			all_bookings.add(booking);
 			booking.book();
@@ -94,7 +82,7 @@ public class Customer extends User{
 		if(all_bookings.size() == 0)
 			return false;
 		for(Booking b: all_bookings) {
-			System.out.println("Booking ID: " + b.getID() + " Property Booked: " + b.property.name +" \nDates Booked: " + DateFormat.getInstance().format(b.start_date) + " to " + DateFormat.getInstance().format(new Date(b.start_date.getTime() + b.num_days*24*60*60)));
+			System.out.println("Booking ID: " + b.getID() + " Property Booked: " + b.getProperty().getName() +" \nDates Booked: " + DateFormat.getInstance().format(b.getStart_date()) + " to " + DateFormat.getInstance().format(new Date(b.getStart_date().getTime() + b.getNum_days()*24*60*60)));
 		}
 		return true;
 	}

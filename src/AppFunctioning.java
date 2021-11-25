@@ -47,7 +47,7 @@ public class AppFunctioning {
 		}
 		options.add("My Details");
 		options.add("Logout");
-		
+		System.out.println("");
 		for(int i = 1; i <= options.size(); i++) {
 			System.out.println(i + ". " + options.get(i - 1));
 		}
@@ -71,7 +71,7 @@ public class AppFunctioning {
 		}
 		else if(check == UserOptions.SHOW_CANCEL) {
 			if(!user.showBookings()) {
-				System.out.println("No Bookings to show.");
+				System.out.println("No Bookings to show.\n");
 				return true;
 			}
 			
@@ -80,10 +80,11 @@ public class AppFunctioning {
 			if(booking_id == -1)
 				return true;
 			user.cancelBooking(db.bookings.get(booking_id));
+			System.out.println("Booking Canceled\n");
 		}
 		else if(check == UserOptions.ADD) {
 			user.addProperty(createProperty(user));
-			System.out.println("Property Added");
+			System.out.println("Property Added\n");
 		}
 		else if (check == UserOptions.MY_DETAILS) {
 			System.out.println(user.getDetails());
@@ -91,7 +92,7 @@ public class AppFunctioning {
 		else if (check == UserOptions.EXIT)
 			return false;
 		else if (check == UserOptions.INVALID) 
-			System.out.println("Not a valid option!");
+			System.out.println("Not a valid option!\n");
 		
 		return true;
 	}
@@ -99,7 +100,7 @@ public class AppFunctioning {
 	private void searching(User user) throws IOException {
 		Date search_date = createStartDate(user);
 		if(!search_date.after(new Date())) {
-			System.out.println("Not a Valid Date");
+			System.out.println("Not a Valid Date\n");
 			searching(user);
 			return;
 		}
@@ -110,7 +111,7 @@ public class AppFunctioning {
 			
 			System.out.println("Select the property ID you want to book or -1 to return:");
 			for(Property property: properties) {
-				System.out.println("ID: " + property.getID() + " Name: " + property.name + " Location: " + property.address.toString());
+				System.out.println("ID: " + property.getID() + " | Name: " + property.getName() + " | Location: " + property.getAddress().toString() + " | Price per Night: " + property.getPrice_per_night());
 			}
 			int id = Integer.parseInt(br.readLine());
 			if(id == -1)
@@ -127,7 +128,7 @@ public class AppFunctioning {
 		String line = br.readLine();
 		String date[] = line.split("-");
 		java.util.Calendar cal = java.util.Calendar.getInstance();
-		cal.set(Integer.parseInt(date[2]), Integer.parseInt(date[1])-1,  Integer.parseInt(date[0]));
+		cal.set(Integer.parseInt(date[2]), Integer.parseInt(date[1])-1, Integer.parseInt(date[0]), 0, 0, 0);
 		return cal.getTime();
 	}
 	

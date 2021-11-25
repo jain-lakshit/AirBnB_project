@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class Booking {
-	int property_id;
-	public int num_days;
-	public Date start_date;
-	Property property;
-	int booking_id;
+	private int property_id;
+	private int num_days;
+	private Date start_date;
+	private Property property;
+	private int booking_id;
 	private static Database db = Database.getInstance();
 
 	public static Booking createObj(String line)
@@ -40,12 +40,15 @@ public class Booking {
 	}
 	
 	public int getTotalPrice() {
-		return property.price_per_night * num_days;
+		return property.getPrice_per_night() * num_days;
 	}
-	
-	public int getID() {
-		return booking_id;
-	}
+
+	public int getID() {return booking_id;}
+	public int getNum_days() {return num_days;}
+	public int getProperty_id() {return property_id;}
+	public Date getStart_date() {return start_date;}
+	public Property getProperty() {return property;}
+
 	
 	public Boolean verifyTimings() {
 		Date curr = new Date();

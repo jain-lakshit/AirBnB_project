@@ -1,8 +1,10 @@
 import java.util.*;
 
 public class Calendar {
-	public Set<Date> dates;
-	
+	private Set<Date> dates;
+
+	public Set<Date> getDates() {return dates;}
+
 	public Calendar() {
 		this.dates = new HashSet<Date>();
 	}
@@ -14,7 +16,7 @@ public class Calendar {
 		}
 	}
 	public void bookDate(Date date) {
-		if(dates.contains(date) == false)
+		if(this.contains(date) == false)
 			dates.add(date);
 	}
 	public void cancelDate(Date date) {
@@ -22,7 +24,11 @@ public class Calendar {
 	}
 	
 	public Boolean contains(Date date) {
-		return dates.contains(date);
+		for(Date d: dates){
+			if(d.getDate() == date.getDate() && d.getMonth() == date.getMonth() && d.getYear() == date.getYear())
+				return true;
+		}
+		return false;
 	}
 	
 	public String toString() {

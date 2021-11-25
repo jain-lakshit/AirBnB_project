@@ -15,7 +15,7 @@ public class LoginAndSignup {
 	}
 	
 	public User loginORsignup() throws IOException{
-		System.out.println("1. Login \n2. Sign Up");
+		System.out.println("\n1. Login \n2. Sign Up\n");
 		int check = Integer.parseInt(br.readLine());
 		if(check == 1) {
 			return login();
@@ -30,7 +30,7 @@ public class LoginAndSignup {
 	}
 	
 	private User login() throws IOException{
-		System.out.println("\n1. Login as Customer \n2. Login as Manager");
+		System.out.println("\n1. Login as Customer \n2. Login as Manager\n");
 		int check2 = Integer.parseInt(br.readLine());
 		if(check2 != 2 && check2 != 1){
 			System.out.println("Choose a valid option.");
@@ -59,7 +59,7 @@ public class LoginAndSignup {
 	}
 	
 	private User signUp() throws IOException {
-		System.out.println("\n1. Sign Up as Customer \n2. Sign Up as Manager");
+		System.out.println("\n1. Sign Up as Customer \n2. Sign Up as Manager\n");
 		int check2 = Integer.parseInt(br.readLine());
 		if(check2 != 2 && check2 != 1){
 			System.out.println("Choose a valid option.");

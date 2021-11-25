@@ -1,14 +1,14 @@
 import java.util.*;
 
 public class Property {
-	public String name;
-	public Location address;
-	public int price_per_night;
+	private String name;
+	private Location address;
+	private int price_per_night;
 	public Calendar dates_booked;
-	public User manager;
-	public int num_rooms;
-	public int id;
-	public int manager_id;
+	private User manager;
+	private int num_rooms;
+	private int id;
+	private int manager_id;
 	private static Database db = Database.getInstance();
 
 	public Property(String line) {
@@ -44,7 +44,13 @@ public class Property {
 	public int getID() {
 		return id;
 	}
-	
+	public int getPrice_per_night(){return price_per_night;}
+	public int getNum_rooms() {return num_rooms;}
+	public int getManager_id() {return manager_id;}
+	public String getName() {return name;}
+	public User getManager() {return manager;}
+	public Location getAddress() {return address;}
+
 	public String toString() {
 		return id + "~" + name + "~" + address.toString() + "~" + price_per_night + "~" + num_rooms + "~" + manager_id + "~" + dates_booked.toString();
 	}

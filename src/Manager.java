@@ -6,6 +6,7 @@ public class Manager extends Customer {
 	public Manager(String line) {
 		super(line);
 	}
+
 	public void addProperty(Property property) {		
 		db.addProperties(property, property.getID());
 	}

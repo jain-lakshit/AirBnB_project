@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Database {
 	
-	private static Database Instance = new Database();	
+	private static Database Instance;
 	
 	private Database() {
 		properties = new HashMap<>();
@@ -13,6 +13,8 @@ public class Database {
 	}
 	
 	public static Database getInstance() {
+		if (Instance == null)
+			 Instance = new Database();
 		return Instance;
 	}
 	

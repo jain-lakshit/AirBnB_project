@@ -1,4 +1,4 @@
-0~Lakshit~lakshit1234567~lakshit@123.com~9876556789~4500~lakshit@123
+0~Lakshit~lakshit1234567~lakshit@123.com~9876556789~3500~lakshit@123
 2~Manraj~manraj1234567~manraj@123.com~9845678559~3000~manraj@123
 3~Owais~owais1234567~owais@123.com~9814565789~3000~owais@123
 12~Ramesh~rameshramesh123~ramesh@gmail.com~8241729712~4500~ramesh@123

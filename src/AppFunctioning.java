@@ -4,7 +4,7 @@ import java.util.*;
 public class AppFunctioning {
 	private static AppFunctioning Instance = new AppFunctioning();	
 	
-	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	private static Database db = Database.getInstance();
 
 	private enum UserOptions
@@ -98,12 +98,13 @@ public class AppFunctioning {
 	}
 	
 	private void searching(User user) throws IOException {
-		Date search_date = createStartDate(user);
+		Date search_date = createStartDate();
 		if(!search_date.after(new Date())) {
 			System.out.println("Not a Valid Date\n");
 			searching(user);
 			return;
 		}
+		// TODO: 	MOVE TO DATABASE
 		List<Property> properties = user.searchProperties(search_date);
 		if(properties.size() != 0) {
 			System.out.println("Number of days you want to book for: ");
@@ -116,6 +117,8 @@ public class AppFunctioning {
 			int id = Integer.parseInt(br.readLine());
 			if(id == -1)
 				return;
+
+			// TODO: Error handling for out of bound id
 			user.bookProperty(db.properties.get(id), search_date, num_days);
 		}
 		else {
@@ -123,7 +126,7 @@ public class AppFunctioning {
 		}
 	}
 	
-	private Date createStartDate(User user) throws IOException {
+	private Date createStartDate() throws IOException {
 		System.out.println("Enter date for searching (dd-mm-yyyy): ");
 		String line = br.readLine();
 		String date[] = line.split("-");

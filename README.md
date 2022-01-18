@@ -29,4 +29,4 @@ The image above shows how to cancel a booking. We are cancelling the booking we 
 2. Now run > java -jar Project_AirBnB.jar
 
 
-** The demo folder contains the demonstration video **
+**The demo folder contains the demonstration video**
